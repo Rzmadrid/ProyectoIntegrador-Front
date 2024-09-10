@@ -19,7 +19,12 @@
                         <li><a href="#" onclick="showSection('listar-odontologos')">Listar Odontólogos</a></li>
                     </ul>
                 </li>
-                <li><a href="#" onclick="showSection('citas')">Citas</a></li>
+                <li><a href="#" onclick="toggleSubmenu('reservas-submenu');showSection('reservas')">Reservas</a>
+                    <ul id="reservas-submenu" class="submenu">
+                        <li><a href="#" onclick="showSection('ingresar-reserva')">Reservar Cita</a></li>
+                        <li><a href="#" onclick="showSection('listar-reservas')">Listar Reservas</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#" onclick="toggleSubmenu('pacientes-submenu');showSection('pacientes')">Pacientes</a>
                     <ul id="pacientes-submenu" class="submenu">
