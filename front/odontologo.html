@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Odontólogos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('dashboard')" style="font-size: 2em; text-align: center;font-weight: bold;" >Clínica Odontológica</a></li>
+                <li>
+                    <a href="#" onclick="toggleSubmenu('odontologos-submenu');showSection('odontologos')">Odontólogos</a>
+                    <ul id="odontologos-submenu" class="submenu">
+                        <li><a href="#" onclick="showSection('ingresar-odontologo')">Ingresar Odontólogo</a></li>
+                        <li><a href="#" onclick="showSection('listar-odontologos')">Listar Odontólogos</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" onclick="showSection('citas')">Citas</a></li>
+                <li>
+                    <a href="#" onclick="toggleSubmenu('pacientes-submenu');showSection('pacientes')">Pacientes</a>
+                    <ul id="pacientes-submenu" class="submenu">
+                        <li><a href="#" onclick="showSection('ingresar-paciente')">Ingresar Paciente</a></li>
+                        <li><a href="#" onclick="showSection('listar-pacientes')">Listar Pacientes</a></li>
+                </li>
+            </ul>
+        </nav>
+        <main class="content">
+            <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <section id="dashboard" class="section active">
+                <h1>Dashboard</h1>
+                <p>Bienvenido al panel de administración.</p>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('odontologos')">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Odontólogo</h3>
+                        <p>Información sobre los odontólogos.</p>
+                    </div>
+                    <div class="card" onclick="showSection('pacientes')">
+                        <i class="fas fa-user"></i>
+                        <h3>Paciente</h3>
+                        <p>Información sobre los pacientes.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Reservas</h3>
+                        <p>Información sobre las reservas.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="ingresar-odontologo" class="section">
+                <h1>Ingresar Odontólogo</h1>
+                <form class="modern-form">
+                    <div class="form-group">
+                        <label for="nroMatricula">Nro Matrícula</label>
+                        <input type="number" id="nroMatricula" name="nroMatricula" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <button type="submit">Registrar</button>
+                </form>
+            </section>
+            <section id="listar-odontologos" class="section">
+                <h1>Listar Odontólogos</h1>
+                <div class="table-container">
+                    <table class="modern-table" id="tablaOdontologos">
+                        <thead>
+                            <tr>
+                                <th>Nro Matrícula</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Dr. Juan Pérez</td>
+                                <td>Ortodoncia</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Dra. María López</td>
+                                <td>Endodoncia</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="odontologos" class="section">
+                <h1>Gestión de Odontólogos</h1>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('ingresar-odontologo')">
+                        <i class="fas fa-user-plus"></i>
+                        <h3>Registrar Odontólogo</h3>
+                        <p>Accede al formulario para registrar un nuevo odontólogo.</p>
+                    </div>
+                    <div class="card" onclick="showSection('listar-odontologos')">
+                        <i class="fas fa-list"></i>
+                        <h3>Listar Odontólogos</h3>
+                        <p>Consulta la lista de odontólogos registrados.</p>
+                    </div>
+                    <div class="card" onclick="showSection('buscar-odontologos')">
+                        <i class="fa fa-address-book"></i>
+                        <h3>Buscar Odontólogo</h3>
+                        <p>Consulta por un odontólogo registrado.</p>
+                    </div>
+                </div>
+            </section>
+            <!--PACIENTES-->
+            <section id="ingresar-paciente" class="section">
+                <h1>Ingresar Odontólogo</h1>
+                <form class="modern-form">
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="dni" name="dni" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaIngreso">Fecha Ingreso</label>
+                        <input type="date" id="fechaIngreso" name="fechaIngreso" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="calle" class="form-label">Calle:</label>
+                        <input type="text" class="form-control" id="calle" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="numero" class="form-label">Numero:</label>
+                        <input type="number" class="form-control" id="numero" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="localidad" class="form-label">Localidad:</label>
+                        <input type="text" class="form-control" id="localidad" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="provincia" class="form-label">Provincia:</label>
+                        <input type="text" class="form-control" id="provincia" required />
+                      </div>
+                    <button type="submit">Registrar</button>
+                </form>
+            </section>
+            <section id="listar-pacientes" class="section">
+                <h1>Listar Pacientes</h1>
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>DNI</th>
+                                <th>Fecha Ingreso</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Juan Pérez</td>
+                                <td>Ortodoncia</td>
+                                <td>01-09-2024</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>María López</td>
+                                <td>Endodoncia</td>
+                                <td>01-09-2024</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="pacientes" class="section">
+                <h1>Gestión de Pacientes</h1>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('ingresar-paciente')">
+                        <i class="fas fa-user-plus"></i>
+                        <h3>Registrar Paciente</h3>
+                        <p>Accede al formulario para registrar un nuevo Paciente.</p>
+                    </div>
+                    <div class="card" onclick="showSection('listar-pacientes')">
+                        <i class="fas fa-list"></i>
+                        <h3>Listar Pacientes</h3>
+                        <p>Consulta la lista de Pacientes registrados.</p>
+                    </div>
+                    <div class="card" onclick="showSection('buscar-paciente')">
+                        <i class="fa fa-address-book"></i>
+                        <h3>Buscar Paciente</h3>
+                        <p>Consulta por un Paciente registrado.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
