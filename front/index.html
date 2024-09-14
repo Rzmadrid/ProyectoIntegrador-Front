@@ -1,62 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <nav
-      class="navbar bg-dark navbar-expand-lg bg-body-tertiary"
-      data-bs-theme="dark"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Clinica Odontologica</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Gestión de Pacientes
-              </a>
-              <ul class="dropdown-menu">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Odontólogos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="#" onclick="showSection('dashboard')" style="font-size: 2em; text-align: center;font-weight: bold;" >Clínica Odontológica</a></li>
                 <li>
-                  <a class="dropdown-item" href="/listar_pacientes.html">Listar Pacientes</a>
+                    <a href="#" onclick="toggleSubmenu('pacientes-submenu');showSection('pacientes')">Pacientes</a>
+                    <ul id="pacientes-submenu" class="submenu">
+                        <li><a href="#" onclick="showSection('ingresar-paciente')">Ingresar Paciente</a></li>
+                        <li><a href="#" onclick="showSection('listar-pacientes')">Listar Pacientes</a></li>
+                    </ul>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/agregar_pacientes.html">Agregar Pacientes</a>
+                    <a href="#" onclick="toggleSubmenu('odontologos-submenu');showSection('odontologos')">Odontólogos</a>
+                    <ul id="odontologos-submenu" class="submenu">
+                        <li><a href="#" onclick="showSection('ingresar-odontologo')">Ingresar Odontólogo</a></li>
+                        <li><a href="#" onclick="showSection('listar-odontologos')">Listar Odontólogos</a></li>
+                    </ul>
                 </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+                <li><a href="#" onclick="toggleSubmenu('reservas-submenu');showSection('turnos')">Reservas</a>
+                    <ul id="reservas-submenu" class="submenu">
+                        <li><a href="#" onclick="showSection('ingresar-turno')">Registrar Turno</a></li>
+                        <li><a href="#" onclick="showSection('listar-turnos')">Listar Turnos</a></li>
+                    </ul>
+                </li>
+                
+            
+        </nav>
+        <main class="content">
+            <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <section id="dashboard" class="section active">
+                <h1>Dashboard</h1>
+                <p>Bienvenido al panel de administración.</p>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('odontologos')">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Odontólogo</h3>
+                        <p>Información sobre los odontólogos.</p>
+                    </div>
+                    <div class="card" onclick="showSection('pacientes')">
+                        <i class="fas fa-user"></i>
+                        <h3>Paciente</h3>
+                        <p>Información sobre los pacientes.</p>
+                    </div>
+                    <div class="card" onclick="showSection('turnos')">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Reservas</h3>
+                        <p>Información sobre las reservas.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="ingresar-odontologo" class="section">
+                <h1>Ingresar Odontólogo</h1>
+                <form class="modern-form" id="agregarOdontologo">
+                    <div class="form-group">
+                        <label for="nroMatricula">Nro Matrícula</label>
+                        <input type="number" id="nroMatricula" name="nroMatricula" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombreOdontologo" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellidoOdontologo" name="apellido" required>
+                    </div>
+                    <button type="submit">Registrar</button>
+                </form>
+                <script src="/js/agregarOdontologo.js"></script>
+            </section>
+            <section id="listar-odontologos" class="section">
+                <h1>Listar Odontólogos</h1>
+                <div class="table-container">
+                    <table class="modern-table" id="tablaOdontologos">
+                        <thead>
+                            <tr>
+                                <th>Nro Matrícula</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal -->
+                <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span id="closeModalBtn" class="close">&times;</span>
+                    <h2>Modificar Odontólogo</h2>
+                    <form id="editForm" class="modern-form">
+                    <div class="form-group">
+                        <label for="nroMatricula">Nro Matrícula</label>
+                        <input type="number" id="editNroMatricula" name="editNroMatricula" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="editNombreOdontologo" name="editNombreOdontologo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="editApellidoOdontologo" name="editApellidoOdontologo" required>
+                    </div>
+
+                    <button type="submit" class="btn">Guardar Cambios</button>
+                    </form>
+                </div>
+                </div>
+                
+            </section>
+            <section id="buscar-odontologos" class="section">
+                <h1>Buscar Odontólogo</h1>
+                    <form class="modern-form" id="buscarOdontologo">
+                    <div class="form-group">
+                        <input type="text" id="nombreBO" name="nameBO" placeholder="Nombre Odontólogo">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="apellidoBO" name="apellidoBO" placeholder="Apellido Odontólogo">
+                    </div>
+            
+                    <button type="submit">Buscar</button>
+                    </form>
+                
+                <div class="table-container">
+                    <table class="modern-table" id="tablaBuscarOdontologos">
+                        <thead>
+                            <tr>
+                                <th>Nro Matrícula</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <script src="/js/listarOdontologos.js"></script>
+            <section id="odontologos" class="section">
+                <h1>Gestión de Odontólogos</h1>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('ingresar-odontologo')">
+                        <i class="fas fa-user-plus"></i>
+                        <h3>Registrar Odontólogo</h3>
+                        <p>Accede al formulario para registrar un nuevo odontólogo.</p>
+                    </div>
+                    <div class="card" onclick="showSection('listar-odontologos')">
+                        <i class="fas fa-list"></i>
+                        <h3>Listar Odontólogos</h3>
+                        <p>Consulta la lista de odontólogos registrados.</p>
+                    </div>
+                    <div class="card" onclick="showSection('buscar-odontologos')">
+                        <i class="fa fa-address-book"></i>
+                        <h3>Buscar Odontólogo</h3>
+                        <p>Consulta por un odontólogo registrado.</p>
+                    </div>
+                </div>
+            </section>
+<!---------------------------------------PACIENTES------------------------------------------------------------------->
+            <section id="ingresar-paciente" class="section">
+                <h1>Ingresar Odontólogo</h1>
+                <form class="modern-form" id="agregarPaciente">
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="dni" name="dni" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaIngreso">Fecha Ingreso</label>
+                        <input type="date" id="fechaIngreso" name="fechaIngreso" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="calle" class="form-label">Calle:</label>
+                        <input type="text" class="form-control" id="calle" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="numero" class="form-label">Numero:</label>
+                        <input type="number" class="form-control" id="numero" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="localidad" class="form-label">Localidad:</label>
+                        <input type="text" class="form-control" id="localidad" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="provincia" class="form-label">Provincia:</label>
+                        <input type="text" class="form-control" id="provincia" required />
+                      </div>
+                    <button type="submit">Registrar</button>
+                </form>
+                 <script src="/js/agregarPacientes.js"></script>
+            </section>
+            <section id="listar-pacientes" class="section">
+                <h1>Listar Pacientes</h1>
+                <div class="table-container">
+                    <table class="modern-table" id="pacienteTable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>DNI</th>
+                                <th>Fecha Ingreso</th>
+                                <th>Calle</th>
+                                <th>Nro</th>
+                                <th>Localidad</th>
+                                <th>Provincia</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                    <!-- Modal -->
+                <div id="modalPaciente" class="modal">
+                <div class="modal-content">
+                    <span id="closeModalBtnP" class="close">&times;</span>
+                    <h2>Modificar Paciente</h2>
+                    <form class="modern-form" id="editarPaciente">
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="editApellido" name="editapellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="editNombre" name="editnombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="editDni" name="editdni" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaIngreso">Fecha Ingreso</label>
+                        <input type="date" id="editFecha" name="editfechaIngreso" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="calle" class="form-label">Calle:</label>
+                        <input type="text" class="form-control" id="editCalle" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="numero" class="form-label">Numero:</label>
+                        <input type="number" class="form-control" id="editNumero" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="localidad" class="form-label">Localidad:</label>
+                        <input type="text" class="form-control" id="editLocalidad" required />
+                      </div>
+                      <div class="form-group">
+                        <label for="provincia" class="form-label">Provincia:</label>
+                        <input type="text" class="form-control" id="editProvincia" required />
+                      </div>
+
+                    <button type="submit" class="btn">Guardar Cambios</button>
+                    </form>
+                </div>
+                </div>
+                </div>
+               
+            </section>
+            <section id="buscar-paciente" class="section">
+                <h1>Buscar Paciente</h1>
+                    <form class="modern-form" id="buscarPaciente">
+                    <div class="form-group">
+                        <input type="text" id="nameBP" name="nombreBP" placeholder="Nombre Paciente">
+                    </div>
+                     <div class="form-group">
+                        <input type="text" id="apellidoBP" name="apellidoBP" placeholder="Apellido Paciente">
+                    </div>
+            
+                    <button type="submit">Buscar</button>
+                    </form>
+                
+                <div class="table-container">
+                    <table class="modern-table" id="tablaBuscarPaciente">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>DNI</th>
+                                <th>Fecha Ingreso</th>
+                                <th>Calle</th>
+                                <th>Nro</th>
+                                <th>Localidad</th>
+                                <th>Provincia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+             <script src="/js/listarPacientes.js"></script>
+            <section id="pacientes" class="section">
+                <h1>Gestión de Pacientes</h1>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('ingresar-paciente')">
+                        <i class="fas fa-user-plus"></i>
+                        <h3>Registrar Paciente</h3>
+                        <p>Accede al formulario para registrar un nuevo Paciente.</p>
+                    </div>
+                    <div class="card" onclick="showSection('listar-pacientes')">
+                        <i class="fas fa-list"></i>
+                        <h3>Listar Pacientes</h3>
+                        <p>Consulta la lista de Pacientes registrados.</p>
+                    </div>
+                    <div class="card" onclick="showSection('buscar-paciente')">
+                        <i class="fa fa-address-book"></i>
+                        <h3>Buscar Paciente</h3>
+                        <p>Consulta por un Paciente registrado.</p>
+                    </div>
+                </div>
+            </section>
+<!------------------ TURNOS ---------------------------------------------------------------->
+            <section id="ingresar-turno" class="section">
+                <h1>Ingresar Odontólogo</h1>
+                <form class="modern-form" id="agregarTurno">
+                    <div class="form-group">
+                        <label for="idPaciente">Id Paciente</label>
+                        <input type="number" id="idPaciente" name="idPaciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idOdontologo">Id Odontologo</label>
+                        <input type="number" id="idOdontologo" name="idOdontologo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaTurno">Fecha Turno</label>
+                        <input type="date" id="fechaTurno" name="fechaTurno" required>
+                    </div>
+                    <button type="submit">Reservar</button>
+                </form>
+                <script src="/js/agregarTurno.js"></script>
+            </section>
+            <section id="listar-turnos" class="section">
+                <h1>Listar Turnos</h1>
+                <div class="table-container">
+                    <table class="modern-table" id="tablaTurnos">
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Odontologo</th>
+                                <th>Fecha Reserva</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal -->
+                <div id="modalTurno" class="modal">
+                <div class="modal-content">
+                    <span id="closeModalBtnT" class="close">&times;</span>
+                    <h2>Modificar Turno</h2>
+                    <form id="editFormT" class="modern-form">
+                    <div class="form-group">
+                        <label for="idPaciente">Id Paciente</label>
+                        <input type="number" id="editIdPaciente" name="editIdPaciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idOdontologo">Id Odontologo</label>
+                        <input type="number" id="editIdOdontologo" name="editIdOdontologo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idFechaTurno">Fecha Ingreso</label>
+                        <input type="date" id="editFechaTurno" name="editFechaTurno" required>
+                    </div>
+
+                    <button type="submit" class="btn">Guardar Cambios</button>
+                    </form>
+                </div>
+                </div>
+                
+            </section>
+            <section id="buscar-turno" class="section">
+                <h1>Buscar Turno</h1>
+                    <form class="modern-form" id="buscarTurno">
+                    <div class="form-group">
+                        <input type="text" id="nombreT" name="nombreT" placeholder="Nombre Paciente">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="apellidoT" name="apellidoT" placeholder="Apellido Paciente">
+                    </div>
+            
+                    <button type="submit">Buscar</button>
+                    </form>
+                
+                <div class="table-container">
+                    <table class="modern-table" id="tablaBuscarTurno">
+                        <thead>
+                            <tr>
+                                <th>Id Turno</th>
+                                <th>Fecha Reserva</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="turnos" class="section">
+                <h1>Gestión de Turnos</h1>
+                <div class="card-container">
+                    <div class="card" onclick="showSection('ingresar-turno')">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Registrar Turno</h3>
+                        <p>Accede al formulario para registrar un nuevo turno.</p>
+                    </div>
+                    <div class="card" onclick="showSection('listar-turnos')">
+                        <i class="fas fa-list"></i>
+                        <h3>Listar Turnos</h3>
+                        <p>Consulta la lista de turnos registrados.</p>
+                    </div>
+                    <div class="card" onclick="showSection('buscar-turno')">
+                        <i class="fa fa-address-book"></i>
+                        <h3>Buscar Turno</h3>
+                        <p>Consulta turno registrado.</p>
+                    </div>
+                </div>
+            </section>
+            <script src="/js/listarTurnos.js"></script>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    
+</body>
 </html>

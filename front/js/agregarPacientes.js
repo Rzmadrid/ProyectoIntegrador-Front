@@ -1,4 +1,4 @@
-const form = document.getElementById("agregarForm");
+const form = document.getElementById("agregarPaciente");
 const apiURL = "http://localhost:8080";
 
 form.addEventListener("submit", function (event) {
@@ -7,7 +7,7 @@ form.addEventListener("submit", function (event) {
   const apellido = document.getElementById("apellido").value;
   const nombre = document.getElementById("nombre").value;
   const dni = document.getElementById("dni").value;
-  const fecha = document.getElementById("fecha").value;
+  const fecha = document.getElementById("fechaIngreso").value;
   const calle = document.getElementById("calle").value;
   const numero = document.getElementById("numero").value;
   const localidad = document.getElementById("localidad").value;
@@ -39,6 +39,7 @@ form.addEventListener("submit", function (event) {
       console.log(data);
       alert("Paciente agregado con éxito");
       form.reset(); // Resetear el formulario
+      fetchPacientes();
     })
     .catch((error) => {
       console.error("Error agregando paciente:", error);

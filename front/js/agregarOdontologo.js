@@ -1,12 +1,12 @@
-const form = document.getElementById("agregarForm");
-const apiURL = "http://localhost:8080";
+const formO = document.getElementById("agregarOdontologo");
+const apiURLAO= "http://localhost:8080";
 
-form.addEventListener("submit", function (event) {
+formO.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const nroMatricula = document.getElementById("nroMatricula").value;
-  const apellido = document.getElementById("apellido").value;
-  const nombre = document.getElementById("nombre").value;
+  const apellido = document.getElementById("apellidoOdontologo").value;
+  const nombre = document.getElementById("nombreOdontologo").value;
 
   // llamando al endpoint de agregar
   const datosFormulario = {
@@ -15,7 +15,7 @@ form.addEventListener("submit", function (event) {
     apellido,
   };
 
-  fetch(`${apiURL}/odontologo/guardar`, {
+  fetch(`${apiURLAO}/odontologo/guardar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +26,8 @@ form.addEventListener("submit", function (event) {
     .then((data) => {
       console.log(data);
       alert("Odontologo agregado con éxito");
-      form.reset(); // Resetear el formulario
+      formO.reset(); // Resetear el formulario
+      fetchOdontologos();
     })
     .catch((error) => {
       console.error("Error agregando Odontologo:", error);
